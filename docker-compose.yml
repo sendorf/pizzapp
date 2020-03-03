@@ -1,0 +1,23 @@
+version: '3'
+services:
+  postgres:
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  pizzapp:
+    build: .
+    command: bundle exec rails s -p 3000
+    volumes:
+      - .:/app
+      - bundle_gems:/usr/local/bundle
+    ports:
+      - "${PIZZAPP_PORT:-3000}:3000"
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
+  bundle_gems:
