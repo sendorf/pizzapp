@@ -10,11 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_05_091637) do
+ActiveRecord::Schema.define(version: 2020_03_05_115426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "orders", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "total"
+    t.uuid "store_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "orders_products", id: false, force: :cascade do |t|
+    t.uuid "product_id", null: false
+    t.uuid "order_id", null: false
+    t.index ["order_id", "product_id"], name: "index_orders_products_on_order_id_and_product_id"
+    t.index ["product_id", "order_id"], name: "index_orders_products_on_product_id_and_order_id"
+  end
 
   create_table "products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
