@@ -17,6 +17,8 @@ services:
       - .env
     depends_on:
       - postgres
+    tmpfs:
+      - /opt/app/tmp
 
 volumes:
   postgres_data:
