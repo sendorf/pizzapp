@@ -55,7 +55,10 @@ RSpec.describe 'Products', type: :request do
         expect(Product).to receive(:find).with(product_id).and_return product
         get product_path(product_id)
         expect(response).to be_successful
-        expect(response.body).to include('product name')
+        expect(response.body).to include(name)
+        expect(response.body).to include(type)
+        expect(response.body).to include(sku)
+        expect(response.body).to include(price.to_s)
       end
     end
 
