@@ -23,6 +23,17 @@ class ProductsController < ApplicationController
     render json: e, status: :unprocessable_entity
   end
 
+  def destroy
+    @product = Product.find(params[:id])
+    if @product.destroy
+      render json: @product, status: :ok
+    else
+      render json: @product.errors, status: :bad_request
+    end
+  rescue StandardError => e
+    render json: e, status: :unprocessable_entity
+  end
+
   def show
     render json: Product.find(params[:id]), status: :ok
   rescue StandardError => e

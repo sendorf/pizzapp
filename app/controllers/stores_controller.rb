@@ -23,6 +23,17 @@ class StoresController < ApplicationController
     render json: e, status: :unprocessable_entity
   end
 
+  def destroy
+    @store = Store.find(params[:id])
+    if @store.destroy
+      render json: @store, status: :ok
+    else
+      render json: @store.errors, status: :bad_request
+    end
+  rescue StandardError => e
+    render json: e, status: :unprocessable_entity
+  end
+
   def show
     render json: Store.find(params[:id]), status: :ok
   rescue StandardError => e

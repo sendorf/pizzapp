@@ -155,4 +155,46 @@ RSpec.describe 'Orders', type: :request do
       end
     end
   end
+
+  describe 'request deleting a order' do
+    context 'when the request is correct' do
+      it 'returns the order' do
+        expect(Order).to receive(:find).with(order_id).and_return order
+        expect(order).to receive(:destroy).and_return true
+        delete order_path(order_id)
+        expect(response).to be_successful
+        expect(response.body).to include(total.to_s)
+      end
+    end
+
+    context 'when the request is not correct' do
+      it 'returns a 400 error' do
+        expect(Order).to receive(:find).with(order_id).and_return order
+        expect(order).to receive(:destroy).and_return false
+        expect(order).to receive(:errors).and_return error_message
+        delete order_path(order_id)
+        expect(response).not_to be_successful
+        expect(response.code).to eq '400'
+        expect(response.body).to include(error_message)
+      end
+    end
+
+    context 'when there is an exception' do
+      it 'returns a 422 error' do
+        expect(Order).to receive(:find).with(order_id).and_raise StandardError.new(error_message)
+        delete order_path(order_id)
+        expect(response).not_to be_successful
+        expect(response.code).to eq '422'
+        expect(response.body).to include(error_message)
+      end
+    end
+
+    context 'when there is no order' do
+      it 'returns an empty collection' do
+        delete order_path(order_id)
+        expect(response).not_to be_successful
+        expect(response.body).to include("Couldn't find Order with 'id'=#{order_id}")
+      end
+    end
+  end
 end

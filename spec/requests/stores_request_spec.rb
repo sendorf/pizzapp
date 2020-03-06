@@ -148,7 +148,52 @@ RSpec.describe 'Stores', type: :request do
 
     context 'when there is no store' do
       it 'returns an empty collection' do
-        put store_path(store_id, store_params)
+        delete store_path(store_id)
+        expect(response).not_to be_successful
+        expect(response.body).to include("Couldn't find Store with 'id'=#{store_id}")
+      end
+    end
+  end
+
+  describe 'request deleting a store' do
+    context 'when the request is correct' do
+      it 'returns the store' do
+        expect(Store).to receive(:find).with(store_id).and_return store
+        expect(store).to receive(:destroy).and_return true
+        delete store_path(store_id)
+        expect(response).to be_successful
+        expect(response.body).to include(name)
+        expect(response.body).to include(address)
+        expect(response.body).to include(email)
+        expect(response.body).to include(phone)
+      end
+    end
+
+    context 'when the request is not correct' do
+      it 'returns a 400 error' do
+        expect(Store).to receive(:find).with(store_id).and_return store
+        expect(store).to receive(:destroy).and_return false
+        expect(store).to receive(:errors).and_return error_message
+        delete store_path(store_id)
+        expect(response).not_to be_successful
+        expect(response.code).to eq '400'
+        expect(response.body).to include(error_message)
+      end
+    end
+
+    context 'when there is an exception' do
+      it 'returns a 422 error' do
+        expect(Store).to receive(:find).with(store_id).and_raise StandardError.new(error_message)
+        delete store_path(store_id)
+        expect(response).not_to be_successful
+        expect(response.code).to eq '422'
+        expect(response.body).to include(error_message)
+      end
+    end
+
+    context 'when there is no store' do
+      it 'returns an empty collection' do
+        delete store_path(store_id)
         expect(response).not_to be_successful
         expect(response.body).to include("Couldn't find Store with 'id'=#{store_id}")
       end

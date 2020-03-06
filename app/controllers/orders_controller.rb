@@ -26,6 +26,17 @@ class OrdersController < ApplicationController
     render json: e, status: :unprocessable_entity
   end
 
+  def destroy
+    @order = Order.find(params[:id])
+    if @order.destroy
+      render json: @order, status: :ok
+    else
+      render json: @order.errors, status: :bad_request
+    end
+  rescue StandardError => e
+    render json: e, status: :unprocessable_entity
+  end
+
   def show
     render json: Order.find(params[:id]), status: :ok
   rescue StandardError => e
@@ -41,7 +52,7 @@ class OrdersController < ApplicationController
   private
 
   def allowed_order_params
-    params.require(:order).permit(:store_id, products: %i[id quantity])
+    params.require(:order).permit(:order_id, products: %i[id quantity])
   end
 
   def orders_products
@@ -51,6 +62,6 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    { store_id: allowed_order_params[:store_id], orders_products: orders_products }
+    { order_id: allowed_order_params[:order_id], orders_products: orders_products }
   end
 end

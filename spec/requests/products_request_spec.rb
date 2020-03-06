@@ -154,4 +154,48 @@ RSpec.describe 'Products', type: :request do
       end
     end
   end
+
+  describe 'request deleting a product' do
+    context 'when the request is correct' do
+      it 'returns the product' do
+        expect(Product).to receive(:find).with(product_id).and_return product
+        expect(product).to receive(:destroy).and_return true
+        delete product_path(product_id)
+        expect(response.body).to include(name)
+        expect(response.body).to include(type)
+        expect(response.body).to include(sku)
+        expect(response.body).to include(price.to_s)
+      end
+    end
+
+    context 'when the request is not correct' do
+      it 'returns a 400 error' do
+        expect(Product).to receive(:find).with(product_id).and_return product
+        expect(product).to receive(:destroy).and_return false
+        expect(product).to receive(:errors).and_return error_message
+        delete product_path(product_id)
+        expect(response).not_to be_successful
+        expect(response.code).to eq '400'
+        expect(response.body).to include(error_message)
+      end
+    end
+
+    context 'when there is an exception' do
+      it 'returns a 422 error' do
+        expect(Product).to receive(:find).with(product_id).and_raise StandardError.new(error_message)
+        delete product_path(product_id)
+        expect(response).not_to be_successful
+        expect(response.code).to eq '422'
+        expect(response.body).to include(error_message)
+      end
+    end
+
+    context 'when there is no product' do
+      it 'returns an empty collection' do
+        delete product_path(product_id)
+        expect(response).not_to be_successful
+        expect(response.body).to include("Couldn't find Product with 'id'=#{product_id}")
+      end
+    end
+  end
 end
