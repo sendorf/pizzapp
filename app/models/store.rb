@@ -5,5 +5,5 @@ class Store < ApplicationRecord
 
   has_many :orders
 
-  validates :name, :address, :email, :phone, presence: true
+  validates :name, :address, :phone, presence: true
 end
