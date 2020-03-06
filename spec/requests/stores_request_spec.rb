@@ -55,7 +55,10 @@ RSpec.describe 'Stores', type: :request do
         expect(Store).to receive(:find).with(store_id).and_return store
         get store_path(store_id)
         expect(response).to be_successful
-        expect(response.body).to include('store name')
+        expect(response.body).to include(name)
+        expect(response.body).to include(address)
+        expect(response.body).to include(email)
+        expect(response.body).to include(phone)
       end
     end
 
