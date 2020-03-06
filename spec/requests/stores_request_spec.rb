@@ -148,7 +148,7 @@ RSpec.describe 'Stores', type: :request do
 
     context 'when there is no store' do
       it 'returns an empty collection' do
-        delete store_path(store_id)
+        put store_path(store_id, store_params)
         expect(response).not_to be_successful
         expect(response.body).to include("Couldn't find Store with 'id'=#{store_id}")
       end

@@ -52,7 +52,7 @@ class OrdersController < ApplicationController
   private
 
   def allowed_order_params
-    params.require(:order).permit(:order_id, products: %i[id quantity])
+    params.require(:order).permit(:store_id, products: %i[id quantity])
   end
 
   def orders_products
@@ -62,6 +62,6 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    { order_id: allowed_order_params[:order_id], orders_products: orders_products }
+    { store_id: allowed_order_params[:store_id], orders_products: orders_products }
   end
 end
