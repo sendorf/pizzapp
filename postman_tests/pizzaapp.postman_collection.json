@@ -1,0 +1,351 @@
+{
+	"info": {
+		"_postman_id": "bb4a96e8-9e56-45e0-bcc5-6d492525e505",
+		"name": "pizzaapp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create product",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"product\":\n\t{\"name\": \"product\", \"sku\":\"algo\", \"price\": 12, \"type\":\"Pizza\"}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "ec2-63-34-177-187.eu-west-1.compute.amazonaws.com:5500/products/0d672f95-f49d-4262-a8f8-4693f947dca0?",
+					"host": [
+						"ec2-63-34-177-187",
+						"eu-west-1",
+						"compute",
+						"amazonaws",
+						"com"
+					],
+					"port": "5500",
+					"path": [
+						"products",
+						"0d672f95-f49d-4262-a8f8-4693f947dca0"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get products list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "ec2-63-34-177-187.eu-west-1.compute.amazonaws.com:5500/products",
+					"host": [
+						"ec2-63-34-177-187",
+						"eu-west-1",
+						"compute",
+						"amazonaws",
+						"com"
+					],
+					"port": "5500",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET product",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "ec2-63-34-177-187.eu-west-1.compute.amazonaws.com:5500/products/0d672f95-f49d-4262-a8f8-4693f947dca0",
+					"host": [
+						"ec2-63-34-177-187",
+						"eu-west-1",
+						"compute",
+						"amazonaws",
+						"com"
+					],
+					"port": "5500",
+					"path": [
+						"products",
+						"0d672f95-f49d-4262-a8f8-4693f947dca0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update product",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"product\":\n\t{\"name\": \"product\", \"sku\":\"algo\", \"price\": 12, \"type\":\"Pizza\"}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "ec2-63-34-177-187.eu-west-1.compute.amazonaws.com:5500/products/0d672f95-f49d-4262-a8f8-4693f947dca0?",
+					"host": [
+						"ec2-63-34-177-187",
+						"eu-west-1",
+						"compute",
+						"amazonaws",
+						"com"
+					],
+					"port": "5500",
+					"path": [
+						"products",
+						"0d672f95-f49d-4262-a8f8-4693f947dca0"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Store",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"store\":\n\t{\"name\": \"store\", \"email\":\"algo@cosa.com\", \"phone\": \"67898376543\", \"address\":\"Piaza\"}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "ec2-63-34-177-187.eu-west-1.compute.amazonaws.com:5500/stores",
+					"host": [
+						"ec2-63-34-177-187",
+						"eu-west-1",
+						"compute",
+						"amazonaws",
+						"com"
+					],
+					"port": "5500",
+					"path": [
+						"stores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Store",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "ec2-63-34-177-187.eu-west-1.compute.amazonaws.com:5500/stores/11ce4493-d794-4552-a784-874cdf6251f6",
+					"host": [
+						"ec2-63-34-177-187",
+						"eu-west-1",
+						"compute",
+						"amazonaws",
+						"com"
+					],
+					"port": "5500",
+					"path": [
+						"stores",
+						"11ce4493-d794-4552-a784-874cdf6251f6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Order",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"order\":\n\t{\"store_id\": \"11ce4493-d794-4552-a784-874cdf6251f6\",\n\t \"products\": [{\n\t \t\"id\": \"0d672f95-f49d-4262-a8f8-4693f947dca0\", \"quantity\": 5\n\t }]\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "ec2-63-34-177-187.eu-west-1.compute.amazonaws.com:5500/orders",
+					"host": [
+						"ec2-63-34-177-187",
+						"eu-west-1",
+						"compute",
+						"amazonaws",
+						"com"
+					],
+					"port": "5500",
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET orders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "ec2-63-34-177-187.eu-west-1.compute.amazonaws.com:5500/orders",
+					"host": [
+						"ec2-63-34-177-187",
+						"eu-west-1",
+						"compute",
+						"amazonaws",
+						"com"
+					],
+					"port": "5500",
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Order",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"order\":\n\t{\"store_id\": \"11ce4493-d794-4552-a784-874cdf6251f6\",\n\t \"products\": [{\n\t \t\"id\": \"0d672f95-f49d-4262-a8f8-4693f947dca0\", \"quantity\": 5\n\t }]\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "ec2-63-34-177-187.eu-west-1.compute.amazonaws.com:5500/orders",
+					"host": [
+						"ec2-63-34-177-187",
+						"eu-west-1",
+						"compute",
+						"amazonaws",
+						"com"
+					],
+					"port": "5500",
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET order",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "ec2-63-34-177-187.eu-west-1.compute.amazonaws.com:5500/orders/eebe5751-004c-44f5-af75-6a10eadf3565",
+					"host": [
+						"ec2-63-34-177-187",
+						"eu-west-1",
+						"compute",
+						"amazonaws",
+						"com"
+					],
+					"port": "5500",
+					"path": [
+						"orders",
+						"eebe5751-004c-44f5-af75-6a10eadf3565"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Stores",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "ec2-63-34-177-187.eu-west-1.compute.amazonaws.com:5500/stores",
+					"host": [
+						"ec2-63-34-177-187",
+						"eu-west-1",
+						"compute",
+						"amazonaws",
+						"com"
+					],
+					"port": "5500",
+					"path": [
+						"stores"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

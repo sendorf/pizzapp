@@ -32,3 +32,6 @@ pedido y el total de este.
 4. Trabajar cada requerimiento como una feature branch, creando un Pull Request para
 cada actualización.
 5. Levantar la aplicación en una instancia EC2 de AWS.
+
+**Testing endpoint:** ec2-63-34-177-187.eu-west-1.compute.amazonaws.com:5500
+**Also there are some postman tests in `postman_test` folder**
