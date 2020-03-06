@@ -26,6 +26,17 @@ class OrdersController < ApplicationController
     render json: e, status: :unprocessable_entity
   end
 
+  def destroy
+    @order = Order.find(params[:id])
+    if @order.destroy
+      render json: @order, status: :ok
+    else
+      render json: @order.errors, status: :bad_request
+    end
+  rescue StandardError => e
+    render json: e, status: :unprocessable_entity
+  end
+
   def show
     render json: Order.find(params[:id]), status: :ok
   rescue StandardError => e
