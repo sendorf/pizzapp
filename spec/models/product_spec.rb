@@ -6,6 +6,8 @@ RSpec.describe Product, type: :model do
   describe 'relations' do
     it { is_expected.to have_many :orders }
     it { is_expected.to have_many :orders_products }
+    it { is_expected.to have_many :stores }
+    it { is_expected.to have_many :products_stores }
   end
 
   describe 'validations' do
